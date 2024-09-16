@@ -8,8 +8,8 @@ const Button: React.FC<ButtonProps> = ({ label, icon, backgroundColor, onClick }
     style={{ backgroundColor }}
     onClick={onClick}
   >
-    <span className="mr-2">
-      <Icon icon={icon} fontSize="1.5rem" />
+    <span className="mr-3">
+      <Icon icon={icon} fontSize="1.8rem" />
     </span>
     <span>{label}</span>
   </button>
