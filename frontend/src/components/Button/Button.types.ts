@@ -1,4 +1,6 @@
 export interface ButtonProps {
     label: string;
-    backgroundColor?: string;
+    icon: string;
+    backgroundColor: string;
+    onClick?: () => void;
 }
