@@ -8,8 +8,9 @@ function App() {
     <div className="container flex flex-col h-screen">
       <Header />
       <div className="flex-1">
-        <Button 
-          label='hello world'
+        <Button
+          backgroundColor='#5CFA88'
+          label='Button'
         />
       </div>
       <Footer />
