@@ -9,12 +9,15 @@ export default {
       center: true,
       padding: '2rem', 
     },
-    boxShadow: {
-      DEFAULT: '2px 4px 0px 0px rgba(0, 0, 0, 1)',
-    },
     extend: {
       fontFamily: {
         'sans': ['Lexend', 'system-ui', 'sans-serif'],
+      },
+      borderWidth: {
+        DEFAULT: '3px',
+      },
+      boxShadow: {
+        DEFAULT: '2px 4px 0px 0px rgba(0, 0, 0, 1)',
       },
     },
   },
