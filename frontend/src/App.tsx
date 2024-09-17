@@ -1,8 +1,8 @@
 import './index.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Button from './components/Button'
-import Select from './components/Select'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import Button from './components/Button/Button'
+import Select from './components/Select/Select'
 
 function App() {
   return (
