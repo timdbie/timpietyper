@@ -6,9 +6,9 @@ import Typer from './components/Typer/Typer'
 
 function App() {
   return (
-    <div className="container flex flex-col h-screen">
+    <div className="container flex flex-col justify-between h-screen">
       <Header />
-      <div className="flex flex-1 justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         <Bar />
         <Typer />
       </div>

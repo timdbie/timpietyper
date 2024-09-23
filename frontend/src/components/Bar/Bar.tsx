@@ -3,7 +3,7 @@ import Button from '../Button/Button'
 import Select from '../Select/Select'
 
 const Bar: React.FC = () => (
-    <div className="flex-1 flex justify-between">
+    <div className="w-full flex justify-between mb-8">
         <div className="flex flex-row">
             <Select
             icon="mingcute:settings-6-line"
