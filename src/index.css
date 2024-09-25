@@ -8,3 +8,11 @@ body {
     background-color: #F8F4F2;
     font-family: 'Lexend', sans-serif;
 }
+
+.word {
+    @apply h-12 p-2
+}
+
+.word span {
+    @apply text-3xl 
+}
