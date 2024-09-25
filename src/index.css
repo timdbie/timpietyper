@@ -10,9 +10,13 @@ body {
 }
 
 .word {
-    @apply h-12 p-2
+    @apply h-12 p-2 opacity-60
 }
 
 .word span {
-    @apply text-3xl 
+    @apply text-3xl
+}
+
+.active {
+    @apply opacity-100
 }

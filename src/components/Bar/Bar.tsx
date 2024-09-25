@@ -1,5 +1,5 @@
 import React from "react";
-import Button from '../Button/Button'
+// import Button from '../Button/Button'
 import Select from '../Select/Select'
 
 const Bar: React.FC = () => (
@@ -28,13 +28,13 @@ const Bar: React.FC = () => (
             </Select>
         </div>
 
-        <div>
+        {/* <div>
             <Button
                 label='Multiplayer'
                 icon="mingcute:game-2-line"
                 backgroundColor='#5CFA88'
             />
-        </div>
+        </div> */}
     </div>
 );
 
