@@ -7,8 +7,12 @@ const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const updateLetters = (value: string) => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
         const activeWord = document.querySelector('.word.active');
+
+        setInputValue(value);
+
         if (activeWord) {
             const letters = activeWord.querySelectorAll('span');
             letters.forEach((letter, letterIndex: number,) => {
@@ -27,19 +31,16 @@ const Typer: React.FC = () => {
         }
     };
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setInputValue(value);
-        updateLetters(value);
-        
-        if (value.length === words[activeIndex].length) {
-            if (activeIndex < words.length - 1) {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === ' ') {
+            e.preventDefault();
+
+            if (activeIndex < words.length - 1 && inputValue.length > 0) {
                 setActiveIndex(activeIndex + 1);
             }
-
             setInputValue('');
         }
-    };    
+    };
 
     return (
         <div className="relative w-full h-36 overflow-clip">
@@ -52,6 +53,7 @@ const Typer: React.FC = () => {
                 spellCheck="false"
                 value={inputValue}
                 onChange={handleInput}
+                onKeyDown={handleKeyDown}
             />
             <div className="w-full flex flex-wrap overflow-clip">
                 {words.map((word, index) => {
