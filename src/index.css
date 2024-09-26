@@ -20,3 +20,11 @@ body {
 .active {
     @apply opacity-100
 }
+
+.correct {
+    @apply text-green-500
+}
+
+.incorrect {
+    @apply text-red-500
+}
