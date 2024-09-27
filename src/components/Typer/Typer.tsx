@@ -1,11 +1,26 @@
-import React, {useState} from 'react';
-
-// temporary word array
-const words = Array(64).fill("hello");
+import React, { useState, useEffect } from "react";
 
 const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
+    const [words, setWords] = useState<string[]>([]);
+
+    useEffect(() => {
+        const fetchWords = async () => {
+            try {
+                const response = await fetch("http://localhost:5278/words");
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                const data = await response.json();
+                setWords(data);
+            } catch (error) {
+                console.error("Error fetching words:", error);
+            }
+        };
+
+        fetchWords();
+    }, []);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -78,6 +93,5 @@ const Typer: React.FC = () => {
         </div>
     );
 };
-
 
 export default Typer;
