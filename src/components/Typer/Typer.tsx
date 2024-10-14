@@ -6,12 +6,12 @@ const Typer: React.FC = () => {
     useEffect(() => {
         const fetchWords = async () => {
             try {
-                const response = await fetch("http://localhost:5278/words");
+                const response = await fetch("http://localhost:5278/api/Word/random?count=50");
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
                 const data = await response.json();
-                setWords(data);
+                setWords(data.values);
             } catch (error) {
                 console.error("Error fetching words:", error);
             }
