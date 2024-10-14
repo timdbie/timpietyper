@@ -1,0 +1,27 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build docker image
+        run: docker build . --file Dockerfile --tag ${{secrets.REGISTRY_HOST}}/timpietyper
+
+      - name: Add commit tag
+        run: docker tag ${{secrets.REGISTRY_HOST}}/timpietyper ${{secrets.REGISTRY_HOST}}/timpietyper:${{github.sha}}
+
+      - name: Add latest tag
+        run: docker tag ${{secrets.REGISTRY_HOST}}/timpietyper ${{secrets.REGISTRY_HOST}}/timpietyper:latest
+
+      - name: Login to registry
+        run: echo "${{secrets.REGISTRY_PASSWORD}}" | docker login -u ${{secrets.REGISTRY_USERNAME}} --password-stdin ${{secrets.REGISTRY_HOST}}
+
+      - name: Push to registry
+        run: docker push -a ${{secrets.REGISTRY_HOST}}/timpietyper
