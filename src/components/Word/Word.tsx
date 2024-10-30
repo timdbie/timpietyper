@@ -6,15 +6,18 @@ const Word: React.FC<WordProps> = ({ word, typedWord, isActive, isTyped }) => {
 
     return (
         <div className={wordClass}>
-            {word.split('').map((letter, letterIndex) => {
-                const isCorrect = typedWord[letterIndex] === letter;
-                const isTypedLetter = letterIndex < typedWord.length;
-                return (
-                    <span key={letterIndex} className={isTypedLetter ? (isCorrect ? 'correct' : 'incorrect') : ''}>
-                        {letter}
-                    </span>
-                );
-            })}
+{word.split('').map((letter, letterIndex) => { 
+    const isCorrect = typedWord[letterIndex] === letter; 
+    const isTypedLetter = letterIndex < typedWord.length; 
+
+    return (
+        <span key={letterIndex} {...(isTypedLetter && { className: isCorrect ? 'correct' : 'incorrect' })}>
+            {letter}
+        </span>
+    ); 
+})}
+
+
             {extraTypedLetters.split('').map((letter, letterIndex) => (
                 <span key={word.length + letterIndex} className="incorrect extra">
                     {letter}
