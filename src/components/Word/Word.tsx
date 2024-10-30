@@ -1,7 +1,7 @@
 import { WordProps } from './Word.types';
 
 const Word: React.FC<WordProps> = ({ word, typedWord, isActive, isTyped }) => {
-    const wordClass = `word ${isActive ? 'active' : ''} ${isTyped ? 'typed' : ''}`.trim();
+    const wordClass = ['word', isActive && 'active', isTyped && 'typed'].filter(Boolean).join(' ');
     const extraTypedLetters = typedWord.slice(word.length);
 
     return (
