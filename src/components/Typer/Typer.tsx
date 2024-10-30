@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Word from "../Word/Word";
 
 const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
@@ -57,28 +58,15 @@ const Typer: React.FC = () => {
                 onKeyDown={handleKeyDown}
             />
             <div className="w-full flex flex-wrap overflow-clip">
-                {words.map((word, index) => {   
-                    const currentTypedWord = typedWords[index];
-                    const isActive = index === activeIndex;
-                    const isTyped = index < activeIndex;
-                    const wordClass = `word ${isActive ? 'active' : ''} ${isTyped ? 'typed' : ''}`.trim();
-
-                    return (
-                        <div key={index} className={wordClass}>
-                            {word.split('').map((letter, letterIndex) => {
-                                const isCorrect = currentTypedWord[letterIndex] === letter;
-                                const isTypedLetter = letterIndex < currentTypedWord.length;
-                                const letterClass = isTypedLetter ? (isCorrect ? 'correct' : 'incorrect') : undefined;
-
-                                return (
-                                    <span key={letterIndex} className={letterClass}>
-                                        {letter}
-                                    </span>
-                                );
-                            })}
-                        </div>
-                    );
-                })}
+                {words.map((word, index) => (
+                    <Word
+                        key={index}
+                        word={word}
+                        typedWord={typedWords[index]}
+                        isActive={index === activeIndex}
+                        isTyped={index < activeIndex}
+                    />
+                ))}
             </div>
         </div>
     );
