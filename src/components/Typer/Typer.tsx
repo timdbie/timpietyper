@@ -47,7 +47,7 @@ const Typer: React.FC = () => {
     return (
         <div className="relative w-full h-36 overflow-clip">
             <input
-                className="absolute bottom-0 z-30"
+                className="absolute z-30 w-full h-full opacity-0"
                 type="text"
                 autoComplete="off"
                 autoCapitalize="off"
