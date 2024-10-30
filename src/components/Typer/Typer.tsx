@@ -4,6 +4,7 @@ const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
     const [words, setWords] = useState<string[]>([]);
+    const [typedWords, setTypedWords] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchWords = async () => {
@@ -14,6 +15,7 @@ const Typer: React.FC = () => {
                 }
                 const data = await response.json();
                 setWords(data.values);
+                setTypedWords(new Array(data.values.length).fill(''));
             } catch (error) {
                 console.error("Error fetching words:", error);
             }
@@ -24,36 +26,20 @@ const Typer: React.FC = () => {
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        const activeWord = document.querySelector('.word.active');
-
         setInputValue(value);
 
-        if (activeWord) {
-            const letters = activeWord.querySelectorAll('span');
-            letters.forEach((letter, letterIndex: number,) => {
-                const isCorrect = value[letterIndex] === words[activeIndex][letterIndex];
-
-                if (letterIndex < value.length) {
-                    if (isCorrect) {
-                        letter.className = 'correct';
-                    } else {
-                        letter.className = 'incorrect';
-                    }
-                } else {
-                    letter.removeAttribute('class');
-                }
-            });
-        }
+        const newTypedWords = [...typedWords];
+        newTypedWords[activeIndex] = value;
+        setTypedWords(newTypedWords);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === ' ') {
             e.preventDefault();
-
             if (activeIndex < words.length - 1 && inputValue.length > 0) {
                 setActiveIndex(activeIndex + 1);
+                setInputValue('');
             }
-            setInputValue('');
         }
     };
 
@@ -71,21 +57,25 @@ const Typer: React.FC = () => {
                 onKeyDown={handleKeyDown}
             />
             <div className="w-full flex flex-wrap overflow-clip">
-                {words.map((word, index) => {
-                    let className = 'word';
-                    if (index === activeIndex) {
-                        className += ' active';
-                    } else if (index < activeIndex) {
-                        className += ' typed';
-                    }
+                {words.map((word, index) => {   
+                    const currentTypedWord = typedWords[index];
+                    const isActive = index === activeIndex;
+                    const isTyped = index < activeIndex;
+                    const wordClass = `word ${isActive ? 'active' : ''} ${isTyped ? 'typed' : ''}`.trim();
 
                     return (
-                        <div key={index} className={className}>
-                            {word.split('').map((letter: string, letterIndex: number) => (
-                                <span key={letterIndex}>
-                                    {letter}
-                                </span>
-                            ))}
+                        <div key={index} className={wordClass}>
+                            {word.split('').map((letter, letterIndex) => {
+                                const isCorrect = currentTypedWord[letterIndex] === letter;
+                                const isTypedLetter = letterIndex < currentTypedWord.length;
+                                const letterClass = isTypedLetter ? (isCorrect ? 'correct' : 'incorrect') : undefined;
+
+                                return (
+                                    <span key={letterIndex} className={letterClass}>
+                                        {letter}
+                                    </span>
+                                );
+                            })}
                         </div>
                     );
                 })}
