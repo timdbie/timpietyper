@@ -21,10 +21,18 @@ body {
     @apply opacity-100
 }
 
+.typed {
+    @apply opacity-100
+}
+
 .correct {
     @apply text-green-500
 }
 
 .incorrect {
     @apply text-red-500
+}
+
+.extra {
+    @apply text-red-700 line-through
 }
