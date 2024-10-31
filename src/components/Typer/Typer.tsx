@@ -38,13 +38,12 @@ const Typer: React.FC = () => {
             setTimerRunning(false);
         }
     }, [isTimerRunning, timeLeft]);
-    
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setInputValue(value);
 
-        if(!isTimerRunning) {
+        if (!isTimerRunning) {
             setTimerRunning(true);
         }
 
@@ -65,31 +64,37 @@ const Typer: React.FC = () => {
 
     return (
         <>
-            <div className="w-full px-2">{timeLeft}</div>
-            <div className="relative w-full h-36 overflow-clip">
-                <input
-                    className="absolute z-30 w-full h-full opacity-0"
-                    type="text"
-                    autoComplete="off"
-                    autoCapitalize="off"
-                    autoCorrect="off"
-                    spellCheck="false"
-                    value={inputValue}
-                    onChange={handleInput}
-                    onKeyDown={handleKeyDown}
-                />
-                <div className="w-full flex flex-wrap overflow-clip">
-                    {words.map((word, index) => (
-                        <Word
-                            key={index}
-                            word={word}
-                            typedWord={typedWords[index]}
-                            isActive={index === activeIndex}
-                            isTyped={index < activeIndex}
+            {timeLeft > 0 ? (
+                <>
+                    <div className="w-full px-2">{timeLeft}</div>
+                    <div className="relative w-full h-36 overflow-clip">
+                        <input
+                            className="absolute z-30 w-full h-full opacity-0"
+                            type="text"
+                            autoComplete="off"
+                            autoCapitalize="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                            value={inputValue}
+                            onChange={handleInput}
+                            onKeyDown={handleKeyDown}
                         />
-                    ))}
-                </div>
-            </div>
+                        <div className="w-full flex flex-wrap overflow-clip">
+                            {words.map((word, index) => (
+                                <Word
+                                    key={index}
+                                    word={word}
+                                    typedWord={typedWords[index]}
+                                    isActive={index === activeIndex}
+                                    isTyped={index < activeIndex}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div className="w-full text-center">Time's up! Your typing session has ended.</div>
+            )}
         </>
     );
 };
