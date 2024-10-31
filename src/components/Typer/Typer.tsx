@@ -6,6 +6,8 @@ const Typer: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [words, setWords] = useState<string[]>([]);
     const [typedWords, setTypedWords] = useState<string[]>([]);
+    const [timeLeft, setTimeLeft] = useState(30);
+    const [isTimerRunning, setTimerRunning] = useState(false);
 
     useEffect(() => {
         const fetchWords = async () => {
@@ -25,9 +27,26 @@ const Typer: React.FC = () => {
         fetchWords();
     }, []);
 
+    useEffect(() => {
+        if (isTimerRunning && timeLeft > 0) {
+            const timer = setInterval(() => {
+                setTimeLeft((prevTime) => prevTime > 0 ? prevTime - 1 : 0);
+            }, 1000);
+    
+            return () => clearInterval(timer);
+        } else if (timeLeft === 0) {
+            setTimerRunning(false);
+        }
+    }, [isTimerRunning, timeLeft]);
+    
+
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setInputValue(value);
+
+        if(!isTimerRunning) {
+            setTimerRunning(true);
+        }
 
         const newTypedWords = [...typedWords];
         newTypedWords[activeIndex] = value;
@@ -45,30 +64,33 @@ const Typer: React.FC = () => {
     };
 
     return (
-        <div className="relative w-full h-36 overflow-clip">
-            <input
-                className="absolute z-30 w-full h-full opacity-0"
-                type="text"
-                autoComplete="off"
-                autoCapitalize="off"
-                autoCorrect="off"
-                spellCheck="false"
-                value={inputValue}
-                onChange={handleInput}
-                onKeyDown={handleKeyDown}
-            />
-            <div className="w-full flex flex-wrap overflow-clip">
-                {words.map((word, index) => (
-                    <Word
-                        key={index}
-                        word={word}
-                        typedWord={typedWords[index]}
-                        isActive={index === activeIndex}
-                        isTyped={index < activeIndex}
-                    />
-                ))}
+        <>
+            <div className="w-full px-2">{timeLeft}</div>
+            <div className="relative w-full h-36 overflow-clip">
+                <input
+                    className="absolute z-30 w-full h-full opacity-0"
+                    type="text"
+                    autoComplete="off"
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                    spellCheck="false"
+                    value={inputValue}
+                    onChange={handleInput}
+                    onKeyDown={handleKeyDown}
+                />
+                <div className="w-full flex flex-wrap overflow-clip">
+                    {words.map((word, index) => (
+                        <Word
+                            key={index}
+                            word={word}
+                            typedWord={typedWords[index]}
+                            isActive={index === activeIndex}
+                            isTyped={index < activeIndex}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
