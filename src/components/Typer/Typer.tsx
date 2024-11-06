@@ -7,7 +7,7 @@ const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
     const { words, typedWords, setTypedWords, loadWords, loading, error } = useWords();
-    const { time, startTimer, resetTimer, isActive } = useTimer(60);
+    const { time, startTimer, resetTimer, isActive } = useTimer(15);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!isActive) {
@@ -35,12 +35,14 @@ const Typer: React.FC = () => {
         setActiveIndex(0);
         setInputValue('');
         setTypedWords(new Array(words.length).fill(''));
-        resetTimer(60);
+        resetTimer(15);
         loadWords();
     };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
+
+    if (time === 0) return <button onClick={restart}>Restart</button>;
 
     return (
         <div className="relative w-full h-36 overflow-clip">
