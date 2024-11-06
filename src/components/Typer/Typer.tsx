@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Word from "../Word/Word";
 import useTimer from "../../hooks/useTimer";
-import { fetchWords } from "../../services/wordService";
+import useWords from "../../hooks/useWords";
 
 const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
-    const [words, setWords] = useState<string[]>([]);
-    const [typedWords, setTypedWords] = useState<string[]>([]);
+    const { words, typedWords, setTypedWords, loadWords, loading, error } = useWords();
     const { time, startTimer, resetTimer, isActive } = useTimer(60);
-
-    const loadWords = async () => {
-        try {
-            const words = await fetchWords();
-            setWords(words);
-            setTypedWords(new Array(words.length).fill(''));
-        } catch (error) {
-            console.error("Error loading words:", error);
-        }
-    };
-
-    useEffect(() => {
-        loadWords();
-    }, []);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!isActive) {
@@ -53,6 +38,9 @@ const Typer: React.FC = () => {
         resetTimer(60);
         loadWords();
     };
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
 
     return (
         <div className="relative w-full h-36 overflow-clip">
