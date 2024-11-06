@@ -1,7 +1,7 @@
 import { SelectProps } from './Select.types';
 import { Icon } from '@iconify/react';
 
-const Button: React.FC<SelectProps> = ({ icon, backgroundColor, iconColor, children }) => (
+const Select: React.FC<SelectProps> = ({ icon, backgroundColor, iconColor, children }) => (
   <div
     className="relative h-12 bg-red flex"
   >
@@ -21,4 +21,4 @@ const Button: React.FC<SelectProps> = ({ icon, backgroundColor, iconColor, child
   </div>
 );
 
-export default Button;
+export default Select;
