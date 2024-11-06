@@ -31,7 +31,7 @@ const Typer: React.FC = () => {
         }
     };
 
-    const restartGame = () => {
+    const restart = () => {
         setActiveIndex(0);
         setInputValue('');
         setTypedWords(new Array(words.length).fill(''));
@@ -44,8 +44,8 @@ const Typer: React.FC = () => {
 
     return (
         <div className="relative w-full h-36 overflow-clip">
-            <button onClick={restartGame}>Restart Game</button>
-            <div className="timer">Time Left: {time}s</div>
+            <button onClick={restart}>Restart</button>
+            <div className="timer">{time}</div>
             <input
                 className="absolute z-30 w-full h-full opacity-0"
                 type="text"
