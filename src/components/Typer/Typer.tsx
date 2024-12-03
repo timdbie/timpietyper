@@ -7,23 +7,23 @@ const Typer: React.FC = () => {
     const [words, setWords] = useState<string[]>([]);
     const [typedWords, setTypedWords] = useState<string[]>([]);
 
-    useEffect(() => {
-        const fetchWords = async () => {
-            try {
-                const response = await fetch("http://localhost:5278/api/Word/random?count=50");
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                const data = await response.json();
-                setWords(data.values);
-                setTypedWords(new Array(data.values.length).fill(''));
-            } catch (error) {
-                console.error("Error fetching words:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchWords = async () => {
+    //         try {
+    //             const response = await fetch("http://localhost:5278/api/Word/random?count=50");
+    //             if (!response.ok) {
+    //                 throw new Error("Network response was not ok");
+    //             }
+    //             const data = await response.json();
+    //             setWords(data.values);
+    //             setTypedWords(new Array(data.values.length).fill(''));
+    //         } catch (error) {
+    //             console.error("Error fetching words:", error);
+    //         }
+    //     };
 
-        fetchWords();
-    }, []);
+    //     fetchWords();
+    // }, []);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
