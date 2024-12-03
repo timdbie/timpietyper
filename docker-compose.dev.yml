@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    image: timdbie/timpietyper:dev
+    container_name: timpietyper-dev
     volumes:
       - ./src:/app/src
     ports:
