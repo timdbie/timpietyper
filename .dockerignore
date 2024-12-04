@@ -1,0 +1,14 @@
+node_modules/
+build/
+*.log
+.env
+.git/
+.gitignore
+.vscode/
+.idea/
+.github/
+*.tmp
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-error.log*
