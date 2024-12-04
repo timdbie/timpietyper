@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  timpietyper:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: timdbie/timpietyper:dev
+    container_name: timpietyper-dev
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "5173:5173"
