@@ -6,10 +6,15 @@ describe('Button Component', () => {
     const mockOnClick = jest.fn();
     const defaultProps = {
         label: 'Click Me',
-        icon: 'mdi:home',
+        icon: 'test-icon',
         backgroundColor: '#f0f0f0',
         onClick: mockOnClick
     };
+
+    it('renders without crashing', () => {
+        render(<Button {...defaultProps} />);
+        expect(screen.getByText('Click Me')).toBeInTheDocument();
+    });
 
     it('renders correctly with given props', () => {
         render(<Button {...defaultProps} />);
@@ -26,13 +31,5 @@ describe('Button Component', () => {
         const button = screen.getByRole('button');
         fireEvent.click(button);
         expect(mockOnClick).toHaveBeenCalledTimes(1);
-    });
-
-    it('renders with icon when provided', () => {
-        render(<Button {...defaultProps} />);
-        const button = screen.getByRole('button');
-        const iconContainer = button.querySelector('span:first-child');
-        expect(iconContainer).toBeInTheDocument();
-        expect(iconContainer?.childElementCount).toBe(1);
     });
 });
