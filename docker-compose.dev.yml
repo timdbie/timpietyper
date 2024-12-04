@@ -1,13 +1,19 @@
-version: "3.8"
-
 services:
-  timpietyper:
+  dev:
+    image: timpietyper-dev
+    container_name: timpietyper-dev
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    image: timdbie/timpietyper:dev
-    container_name: timpietyper-dev
+      target: development
     volumes:
       - ./src:/app/src
     ports:
       - "5173:5173"
+
+  test:
+    image: timpietyper-test
+    container_name: timpietyper-test
+    build:
+      context: .
+      target: testing
+    command: npm test
