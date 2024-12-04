@@ -6,10 +6,10 @@ on:
   
 jobs:
   test:
-      runs-on: self-hosted
-      steps:
-        - name: checkout repository
-          uses: actions/checkout@v3
+    runs-on: self-hosted
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
 
-        - name: unit tests
-          run: make test
+      - name: Unit tests
+        run: make test
