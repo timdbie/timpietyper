@@ -1,0 +1,10 @@
+services:
+  prod:
+    build:
+      context: .
+      target: production
+    container_name: timpietyper
+    ports:
+      - "5183:80"
+    environment:
+      - NODE_ENV=production
