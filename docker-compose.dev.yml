@@ -1,7 +1,7 @@
 services:
   dev:
     image: timpietyper-dev
-    container_name: timpietyper-dev
+    container_name: timpietyper
     build:
       context: .
       target: development
@@ -9,6 +9,8 @@ services:
       - ./src:/app/src
     ports:
       - "5173:5173"
+    networks:
+      - timpietyper_default
 
   test:
     image: timpietyper-test
@@ -17,3 +19,9 @@ services:
       context: .
       target: testing
     command: npm test
+    networks:
+      - timpietyper_default
+
+networks:
+  timpietyper_default:
+    external: true
