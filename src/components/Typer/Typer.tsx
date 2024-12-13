@@ -10,7 +10,7 @@ const Typer: React.FC = () => {
     useEffect(() => {
         const fetchWords = async () => {
             try {
-                const response = await fetch("http://timpietyper-api/api/Word/random?count=50");
+                const response = await fetch("http://192.168.2.2:5278/api/Word/random?count=50");
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
