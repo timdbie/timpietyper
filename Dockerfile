@@ -10,7 +10,7 @@ CMD ["npm", "run", "dev"]
 
 FROM base AS testing
 COPY . .
-CMD ["npm", "test"]
+CMD npm lint && npm test
 
 FROM base AS production
 COPY . .
