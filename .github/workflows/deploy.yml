@@ -1,0 +1,17 @@
+name: Deploying
+
+on:
+  push:
+    branches: 
+      - main
+  workflow_dispatch:
+  
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        run: make prod

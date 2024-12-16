@@ -9,3 +9,9 @@ services:
       - "5183:80"
     environment:
       - NODE_ENV=production
+    networks:
+      - timpietyper_default
+
+networks:
+  timpietyper_default:
+    external: true

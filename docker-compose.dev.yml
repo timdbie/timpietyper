@@ -1,7 +1,7 @@
 services:
   dev:
     image: timpietyper-dev
-    container_name: timpietyper
+    container_name: timpietyper-dev
     build:
       context: .
       target: development
