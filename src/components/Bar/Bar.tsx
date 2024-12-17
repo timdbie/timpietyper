@@ -1,5 +1,5 @@
 import { BarProps } from './Bar.types';
-import Select from '../../Select/Select';
+import Select from './../Select/Select';
 
 const Bar: React.FC<BarProps> = ({ handleTimerDurationChange }) => {
     return (

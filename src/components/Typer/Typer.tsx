@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Word from "./Word/Word";
+import Word from "../Word/Word";
 import useTimer from "../../hooks/useTimer";
 import useWords from "../../hooks/useWords";
-import Bar from "./Bar/Bar";
+import Bar from "../Bar/Bar";
 
 const Typer: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
