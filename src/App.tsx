@@ -1,7 +1,7 @@
-import './index.css'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import Typer from './components/Typer/Typer'
+import "./index.css";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Typer from "./components/Typer/Typer";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

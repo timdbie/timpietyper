@@ -1,6 +1,6 @@
-import React from 'react';
-import { ButtonProps } from './Button.types';
-import { Icon } from '@iconify/react';
+import React from "react";
+import { ButtonProps } from "./Button.types";
+import { Icon } from "@iconify/react";
 
 const Button: React.FC<ButtonProps> = ({ label, icon, backgroundColor, onClick }) => (
   <button

@@ -1,9 +1,9 @@
 import React from "react";
 
 const Footer: React.FC = () => (
-    <footer className="text-black h-24">
+  <footer className="text-black h-24">
 
-    </footer>
+  </footer>
 );
 
 export default Footer;

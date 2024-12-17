@@ -4,8 +4,11 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 
 
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import("eslint").Linter.Config[]} */
 export default [
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: {
@@ -32,9 +35,7 @@ export default [
       "indent": ["error", 2],
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
     },
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
 ];

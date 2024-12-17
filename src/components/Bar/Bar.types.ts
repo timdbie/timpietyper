@@ -1,3 +1,3 @@
 export interface BarProps {
-    handleTimerDurationChange: (duration: number) => void;
+  handleTimerDurationChange: (duration: number) => void;
 }

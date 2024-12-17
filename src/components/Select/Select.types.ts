@@ -1,6 +1,6 @@
 export interface SelectProps {
-    icon: string;
-    backgroundColor: string;
-    iconColor: string;
-    children: React.ReactNode;
+  icon: string;
+  backgroundColor: string;
+  iconColor: string;
+  children: React.ReactNode;
 }
